@@ -1,0 +1,18 @@
+# LLM provider through the Dapr Conversation API.
+# Default: Ollama running locally (no API key). Ollama exposes an OpenAI-compatible
+# endpoint, so the conversation.openai component works with it.
+# Switching providers = switching this YAML. The agent code does not change.
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: llm-provider
+spec:
+  type: conversation.openai
+  version: v1
+  metadata:
+    - name: key
+      value: "ollama"
+    - name: model
+      envRef: OLLAMA_MODEL
+    - name: endpoint
+      envRef: OLLAMA_ENDPOINT

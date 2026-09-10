@@ -1,0 +1,15 @@
+# Dapr Workflow state store (actorStateStore is required): this is where checkpoints live.
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: agent-workflow
+spec:
+  type: state.redis
+  version: v1
+  metadata:
+    - name: redisHost
+      value: localhost:6380
+    - name: redisPassword
+      value: ""
+    - name: actorStateStore
+      value: "true"
